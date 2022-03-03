@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery3.6.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let a;
+			$(function(){
+				$("div[class]").css("color","red");//匹配包含给定值属性的元素；
+				$("div[id = 'ac']").css("color","blue");//匹配给定属性是某个特定值的元素；
+				$("div[id != 'ac']").css("color","pink");//匹配所有不含有指定或不等于特定值的元素；
+				$("div[id ^= 'b']").css("color","red");//匹配给定值属性是以某些值开始的元素；这个就是‘b’开头的；
+				$("div[id $= '2']").css("color","yellow");//匹配给定值属性是以某些值结束的元素；这个就是‘2’结束的；
+				$("div[id][class = 'mini']").css("color","crimson");//复合选择器，同时满足多个条件；
+				$("div[id *= 's']").css("color","green");//匹配给定属性包含了某些值的元素；这个就包含's'的元素；
+				$("input[type = 'checkbox']").prop('checked',true);//所有type为checkbox的inupt默认选中；
+				console.log($("input:enabled"));//匹配所有可用元素，就是不带有'disabled'这个元素；
+				console.log($("input:disabled"));//匹配所有不可用元素，就是带有'disabled'这个元素；
+				console.log($("input:checked"));//匹配所有input被选中的元素；
+				console.log($("input:not(:checked)"));//匹配所有input没有被选中的元素；
+				$("input[value = '呆呆']").click(function(){//点击事件
+					$("#no").text('你选择了'+$("input:checked").length+'个爱好');
+					$("#no").css("color","orangered");//获取的是这个下标
+				});
+				$("input[value = '动漫']").click(function(){//点击事件
+						$("#ok").text('你选择的动漫是'+$("select option:selected").val());
+						$("#ok").css("color","orangered");//.val获取表单里面的值：.text获取文本的值；
+				});
+				$("span[class = 'mg']").click(function(){
+					$("#js").text($(this).html());//获取当前页面的内容；
+					$("#js").css("color","deepskyblue");
+				});
+				$("#ds1").click(function(){
+					$("#imeag2").css("width",$("#imeag2").width()+100);//宽度每次加100px；
+					$("#imeag2").css("transition","2s");
+				});
+				$("#ds2").click(function(){
+					$("#imeag2").css("width",$("#imeag2").width()-100);//宽度每次减100px；
+					$("#imeag2").css("transition","2s");
+				});
+				$("#ds3").click(function(){
+					a = parseInt(Math.random()*(7-1)+1);
+					if(a==1){
+						$("#imeag2").attr("src","img/ws-"+a+".jpg");//点击换图；
+						$("#imeag2").css("transition","2s");
+						a=0;
+					}else{
+						$("#imeag2").attr("src","img/ws-"+a+".jpg");//点击换图；
+						$("#imeag2").css("transition","2s");
+						a=1;
+					}
+					$("#imeag2").css("width","600px");
+				});
+			});
+		</script>
+		<style type="text/css">
+			span{
+				cursor: pointer;
+			}
+			body{
+				position: relative;
+			}
+			#imeag{
+				width: 600px;
+				height: 337px;
+				/*overflow: hidden;*/
+				position: absolute;
+				margin-left: 550px ;
+				margin-top: -450px;
+			}
+			#an{
+				position: absolute;
+				width: 300px;
+				height: 30px;
+				margin-top: -100px;
+				margin-left: 750px;
+			}
+			
+			#ds1{
+				margin-left: 20px;
+				background-color: darkgray;
+			}
+			#ds2,#ds3{
+				background-color: darkgray;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="">喵喵一号</div>
+		<div id="ac">喵喵二号</div>
+		<div id="ac1">喵喵三号</div>
+		<div id="ac2">喵喵四号</div>
+		<div id="bc1">喵喵四号</div>
+		<div id="bc2">喵喵四号</div>
+		<div id="bc2" class="mini">喵喵五号</div>
+		<div id="cs1">喵喵六号</div>
+		<div id="cs2">喵喵七号</div>
+		<input type="checkbox" name="" id="" value="" />默认选中<br />
+		名字:<input type="text" name="" id="" style="color:red;" value="给你龟儿一砣子" disabled="disabled"/>
+			<br /><br />
+		爱好:<input type="button" name="" id="dai" value="呆呆" style="background-color: deepskyblue;"/>
+			<span id="no"></span>
+			<br />
+			<input type="radio" name="" id="" value="" />发呆💯
+			<input type="radio" name="" id="" value="" />发呆😐
+			<input type="radio" name="" id="" value="" />发呆‼
+			<input type="radio" name="" id="" value="" />发呆🤐
+			<br /><br />
+		动漫:<input type="button" name="" id="man" value="动漫" style="background-color: deepskyblue;"/>
+			<span id="ok"></span>
+			<br />
+			<select name="city">
+				<option value="不存在的哦">--选择一个喜欢的--</option>
+				<option value="画江湖之不良人">--画江湖之不良人--</option>
+				<option value="完美世界">--完美世界--</option>
+				<option value="星辰变">--星辰变--</option>
+				<option value="魁拔">--魁拔--</option>
+			</select>
+			<br />
+			<br />
+			<span id="js">点下面显示🤪🤪</span><br /><br />
+			<span class="mg">🤪一个芒果</span><br />
+			<span class="mg">🤪二个芒果</span><br />
+			<span class="mg">🤪三个芒果</span><br /><br />
+			<div id="imeag">
+				<img id="imeag2" src="img/ws-4.jpg" width="600px"/>
+			</div>
+			<div id="an">
+				<input type="button" name="" id="ds1" value="点一下变大" />
+				<input type="button" name="" id="ds2" value="点一下变小" />
+				<input type="button" name="" id="ds3" value="换个图继续点" />
+			</div>
+	</body>
+</html>
